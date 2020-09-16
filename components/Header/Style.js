@@ -4,7 +4,12 @@ export const HeaderBar = Styled.div`
   position: fixed;
   top: 0;
   max-height: 70px;
-  width: 100vw;
+  /* width: 100vw; */
+
+  /* Hacky hacky hacky */
+  width: 900px;
+  left: 50%;
+  transform: translateX(-50%);
 
   display: grid;
   grid-template-areas: "logo nav";

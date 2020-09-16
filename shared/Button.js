@@ -1,6 +1,6 @@
 import Styled from "styled-components";
 
-export default Styled.div`
+export default Styled.button`
   display: inline-block;
   background-color: #4460F1;
   cursor: pointer;
@@ -15,6 +15,8 @@ export default Styled.div`
   font-size: 1.25em;
   font-weight: 500;
   text-align: center;
+
+  border-width: 0;
   
   box-shadow: 0 4px 14px 0 rgba(0,118,255,0.39);
 

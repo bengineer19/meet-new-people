@@ -12,7 +12,6 @@ export const H2 = Styled.div`
 color: #333;
 font-size: 1.5em;
 font-weight: 400;
-/* margin-bottom: 20px; */
 `;
 
 export const Subtitle = Styled.div`

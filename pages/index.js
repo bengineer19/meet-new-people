@@ -42,7 +42,7 @@ export default function Home() {
         <Subtitle>
           Meet people to chat about careers, startups & business
         </Subtitle>
-        {/* <Link href="/friending"> */}
+        {/* <Link href="/networking"> */}
         <Button>Coming Soon!</Button>
         {/* </Link> */}
       </Card>
