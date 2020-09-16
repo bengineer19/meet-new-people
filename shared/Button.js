@@ -5,9 +5,11 @@ export default Styled.div`
   background-color: #4460F1;
   cursor: pointer;
 
+  line-height: 1.5;
+
   margin-top: 20px;
   padding: 10px;
-  min-width: 200px;
+  min-width: 250px;
   border-radius: 10px;
   color: white;
   font-size: 1.25em;
@@ -18,7 +20,7 @@ export default Styled.div`
 
   transition: 0.3s;
   :hover{
-    box-shadow: 0 6px 20px rgba(0,118,255,0.23);
+    box-shadow: 0 6px 20px rgba(0,118,255,0.3);
     background-color: #4F6FFF;
   }
 `;

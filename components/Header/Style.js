@@ -27,9 +27,9 @@ export const Nav = Styled.div`
   justify-items: center;
 
   a {
-    color: #11111;
+    color: #111;
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 500;
     transition: 0.35s;
     text-decoration: none;
   }

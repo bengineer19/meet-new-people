@@ -1,2 +1,2 @@
 export { default as Hero } from "./Hero";
-export { default as Subtitle } from "./Subtitle";
+export { H2, H1, Subtitle } from "./Headings";
