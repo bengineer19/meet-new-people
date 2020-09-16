@@ -1,0 +1,59 @@
+import React, { useState, useEffect } from "react";
+import HamburgerMenu from "react-hamburger-menu";
+
+import { HeaderBar, Nav, BurgerArea, Logo } from "./Style";
+
+export default function Header() {
+  const [isNavVisible, setNavVisibility] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 700px)");
+    mediaQuery.addListener(handleMediaQueryChange);
+    handleMediaQueryChange(mediaQuery);
+
+    return () => {
+      mediaQuery.removeListener(handleMediaQueryChange);
+    };
+  }, []);
+
+  const handleMediaQueryChange = (mediaQuery) => {
+    if (mediaQuery.matches) {
+      setIsSmallScreen(true);
+    } else {
+      setIsSmallScreen(false);
+    }
+  };
+
+  const toggleNav = () => {
+    setNavVisibility(!isNavVisible);
+  };
+
+  return (
+    <HeaderBar>
+      <a href="/">
+        <Logo>MNP</Logo>
+      </a>
+      {(!isSmallScreen || isNavVisible) && (
+        <Nav>
+          <a href="/">Dating</a>
+          <a href="/">Friending</a>
+          <a href="/">Networking</a>
+        </Nav>
+      )}
+      <BurgerArea>
+        <HamburgerMenu
+          isOpen={isNavVisible}
+          menuClicked={toggleNav}
+          width={25}
+          height={20}
+          strokeWidth={1}
+          rotate={0}
+          color="black"
+          borderRadius={0}
+          animationDuration={0.5}
+        />
+      </BurgerArea>
+    </HeaderBar>
+  );
+}
