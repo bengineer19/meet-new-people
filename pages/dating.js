@@ -2,12 +2,12 @@ import Styled from "styled-components";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { Hero, SmolText, BodyText } from "../../shared/typography";
-import Container from "../../shared/Container";
-import Card from "../../shared/Card";
-import Button from "../../shared/Button";
-import TextInput from "../../shared/TextInput";
-import CollegeDropdown from "../../components/CollegeDropdown";
+import { Hero, SmolText, BodyText } from "../shared/typography";
+import Container from "../shared/Container";
+import Card from "../shared/Card";
+import Button from "../shared/Button";
+import TextInput from "../shared/TextInput";
+import CollegeDropdown from "../components/CollegeDropdown";
 
 const SmolInput = Styled(TextInput)`
   width: 100px;
@@ -68,7 +68,6 @@ export default function Dating() {
   return (
     <Container>
       <Hero>Dating Sign Up</Hero>
-
       <Card>
         <form onSubmit={handleSubmit(onSubmit)}>
           <LargeInput
@@ -88,7 +87,7 @@ export default function Dating() {
             ref={register({ required: inProd, min: 1995, max: 2004 })}
           />
 
-          <br />
+          <Spacer />
           <CollegeDropdown
             ref={register({ validate: (value) => value != "selectcollege" })}
           />
@@ -123,13 +122,18 @@ export default function Dating() {
             <BodyText>Female</BodyText>
           </Label>
 
-          <SmolInput placeholder="NB/other" onChange={nbInput}></SmolInput>
+          <SmolInput
+            placeholder="NB/other"
+            name="nb"
+            onChange={nbInput}
+            ref={register}
+          />
           <br />
 
           {displayMatchedWith && (
             <div>
               <FormHeader>
-                Do you want to be matched with people who are interested in
+                You want to be matched with people who are interested in
               </FormHeader>
               <Spacer />
               <Label>
@@ -158,7 +162,7 @@ export default function Dating() {
           <Spacer />
           <Label>
             <input
-              name="maleInterest"
+              name="interestedInMale"
               type="checkbox"
               defaultChecked={false}
               ref={register}
@@ -167,7 +171,7 @@ export default function Dating() {
           </Label>
           <Label>
             <input
-              name="femaleInterest"
+              name="interestedInFemale"
               type="checkbox"
               defaultChecked={false}
               ref={register}
