@@ -52,9 +52,9 @@ export default React.forwardRef(({ register }, ref) => (
         const collegeKey = college
           .toLowerCase()
           .split(" ")
-          .join()
+          .join("")
           .split("'")
-          .join();
+          .join("");
         return (
           <option value={collegeKey} key={collegeKey}>
             {college}

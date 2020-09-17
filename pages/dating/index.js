@@ -2,12 +2,12 @@ import Styled from "styled-components";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { Hero, SmolText, BodyText } from "../shared/typography";
-import Container from "../shared/Container";
-import Card from "../shared/Card";
-import Button from "../shared/Button";
-import TextInput from "../shared/TextInput";
-import CollegeDropdown from "../components/CollegeDropdown";
+import { Hero, SmolText, BodyText } from "../../shared/typography";
+import Container from "../../shared/Container";
+import Card from "../../shared/Card";
+import Button from "../../shared/Button";
+import TextInput from "../../shared/TextInput";
+import CollegeDropdown from "../../components/CollegeDropdown";
 
 const SmolInput = Styled(TextInput)`
   width: 100px;
@@ -31,8 +31,30 @@ const FormHeader = Styled.div`
 `;
 
 export default function Dating() {
+  const inProd = process.env.NODE_ENV != "development";
+  const [successMsg, setSuccessMsg] = useState("");
+
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+    fetch("/api/registerDatingUser", {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then(
+        (result) => {
+          console.log(result);
+          console.log(successMsg);
+          setSuccessMsg(
+            "We've sent you an email to verify your @cam.ac.uk address"
+          );
+          console.log(successMsg);
+        },
+        (error) => console.log(error)
+      );
   };
 
   const [displayMatchedWith, setDisplayMatchedWith] = useState(false);
@@ -49,14 +71,33 @@ export default function Dating() {
 
       <Card>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <LargeInput placeholder="Full Name"></LargeInput>
-          <SmolInput placeholder="CRSID"></SmolInput>
-          <SmolInput placeholder="Birth year" type="number"></SmolInput>
+          <LargeInput
+            placeholder="Full Name"
+            name="name"
+            ref={register({ required: inProd })}
+          />
+          <SmolInput
+            placeholder="CRSID"
+            name="crsid"
+            ref={register({ required: inProd, maxLength: 6 })}
+          />
+          <SmolInput
+            placeholder="Birth year"
+            type="number"
+            name="yearOfBirth"
+            ref={register({ required: inProd, min: 1995, max: 2004 })}
+          />
 
           <br />
-          <CollegeDropdown></CollegeDropdown>
+          <CollegeDropdown
+            ref={register({ validate: (value) => value != "selectcollege" })}
+          />
           <Spacer />
-          <LargeInput placeholder="How to say hi"></LargeInput>
+          <LargeInput
+            placeholder="How to say hi"
+            name="contact"
+            ref={register({ required: inProd })}
+          />
           <SmolText>
             Eg. "Whatsapp me on 0123456789" or "I'm Stephen Toope on fb"
           </SmolText>
@@ -93,7 +134,7 @@ export default function Dating() {
               <Spacer />
               <Label>
                 <input
-                  name="male-nb"
+                  name="maleNb"
                   type="checkbox"
                   defaultChecked={false}
                   ref={register}
@@ -102,7 +143,7 @@ export default function Dating() {
               </Label>
               <Label>
                 <input
-                  name="female-nb"
+                  name="femaleNb"
                   type="checkbox"
                   defaultChecked={false}
                   ref={register}
@@ -117,7 +158,7 @@ export default function Dating() {
           <Spacer />
           <Label>
             <input
-              name="male-interest"
+              name="maleInterest"
               type="checkbox"
               defaultChecked={false}
               ref={register}
@@ -126,7 +167,7 @@ export default function Dating() {
           </Label>
           <Label>
             <input
-              name="female-interest"
+              name="femaleInterest"
               type="checkbox"
               defaultChecked={false}
               ref={register}
@@ -138,7 +179,7 @@ export default function Dating() {
           <FormHeader>Exclude matches from your college? </FormHeader>
           <Label>
             <input
-              name="exclude-college"
+              name="excludeCollege"
               type="checkbox"
               defaultChecked={true}
               ref={register}
@@ -150,6 +191,7 @@ export default function Dating() {
           <Button type="submit">Sign Up</Button>
         </form>
         <Spacer />
+        {successMsg.length > 0 && <BodyText>{successMsg}</BodyText>}
       </Card>
     </Container>
   );

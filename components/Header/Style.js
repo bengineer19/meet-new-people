@@ -20,7 +20,8 @@ export const HeaderBar = Styled.div`
   /* box-shadow: 0 4px 7px 0 rgba(0, 0, 0, 0.2); */
 
   @media (max-width: 700px) {
-  grid-template-areas: "logo burger" "nav nav";
+    width: 100vw;
+    grid-template-areas: "logo burger" "nav nav";
   }
 `;
 
