@@ -22,12 +22,12 @@ const FormHeader = Styled.div`
   font-weight: 500;
 `;
 
-export default function Dating() {
+export default function Friending() {
   const inProd = process.env.NODE_ENV != "development";
   const [successMsg, setSuccessMsg] = useState("");
 
   const onSubmit = (data) => {
-    fetch("/api/registerDatingUser", {
+    fetch("/api/registerFriendingUser", {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export default function Dating() {
 
   return (
     <Container>
-      <Hero>Dating Sign Up</Hero>
+      <Hero>Friending Sign Up</Hero>
       <Card>
         <form onSubmit={handleSubmit(onSubmit)}>
           <LargeInput
@@ -76,7 +76,7 @@ export default function Dating() {
             placeholder="Year you were born in"
             type="number"
             name="yearOfBirth"
-            ref={register({ required: inProd, min: 1995, max: 2004 })}
+            ref={register({ required: inProd, min: 1992, max: 2005 })}
           />
           <Spacer />
           <CollegeDropdown
@@ -92,79 +92,7 @@ export default function Dating() {
             Eg. "Whatsapp me on 0123456789" or "I'm Stephen Toope on fb"
           </SmolText>
           <br />
-          <FormHeader>You identify as: </FormHeader>
-          <Label>
-            <input
-              name="male"
-              type="checkbox"
-              defaultChecked={false}
-              ref={register}
-            />
-            <BodyText>Male</BodyText>
-          </Label>
-          <Label>
-            <input
-              name="female"
-              type="checkbox"
-              defaultChecked={false}
-              ref={register}
-            />
-            <BodyText>Female</BodyText>
-          </Label>
-          <SmolInput
-            placeholder="NB/other"
-            name="nb"
-            onChange={nbInput}
-            ref={register}
-          />
-          <br />
-          {displayMatchedWith && (
-            <div>
-              <FormHeader>
-                You want to be matched with people who are interested in
-              </FormHeader>
-              <Spacer />
-              <Label>
-                <input
-                  name="maleNb"
-                  type="checkbox"
-                  defaultChecked={false}
-                  ref={register}
-                />
-                <BodyText>Males</BodyText>
-              </Label>
-              <Label>
-                <input
-                  name="femaleNb"
-                  type="checkbox"
-                  defaultChecked={false}
-                  ref={register}
-                />
-                <BodyText>Females</BodyText>
-              </Label>
-              <Spacer />
-            </div>
-          )}
-          <FormHeader>You are interested in: </FormHeader>
-          <Spacer />
-          <Label>
-            <input
-              name="interestedInMale"
-              type="checkbox"
-              defaultChecked={false}
-              ref={register}
-            />
-            <BodyText>Male</BodyText>
-          </Label>
-          <Label>
-            <input
-              name="interestedInFemale"
-              type="checkbox"
-              defaultChecked={false}
-              ref={register}
-            />
-            <BodyText>Female</BodyText>
-          </Label>
+
           <Spacer />
           <FormHeader>Exclude matches from your college? </FormHeader>
           <Label>

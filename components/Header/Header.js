@@ -36,8 +36,8 @@ export default function Header() {
       </a>
       {(!isSmallScreen || isNavVisible) && (
         <Nav>
-          <a href="/">Dating</a>
-          <a href="/">Friending</a>
+          <a href="/dating">Dating</a>
+          <a href="/friending">Friending</a>
           <a href="/">Networking</a>
         </Nav>
       )}

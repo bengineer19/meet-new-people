@@ -27,3 +27,26 @@ export const addAction = async (crsid, action) => {
     action,
   });
 };
+
+const updateSheet = async (doc, sheetTitle, crsid) => {
+  const sheetId = doc.sheetsByTitle[sheetTitle]._rawProperties.sheetId;
+  const sheet = doc.sheetsById[sheetId];
+  const rows = await sheet.getRows();
+
+  for (let i = 0; i < rows.length; i++) {
+    if (rows[i].crsid === crsid) {
+      rows[i].emailVerified = true;
+      await rows[i].save();
+
+      break;
+    }
+  }
+};
+
+export const verifyUserEmail = async (crsid) => {
+  const doc = await buildDoc();
+  await doc.loadInfo();
+
+  updateSheet(doc, "Dating", crsid);
+  updateSheet(doc, "Friending", crsid);
+};

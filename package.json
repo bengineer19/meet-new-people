@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.2.6",
     "google-spreadsheet": "^3.0.13",
     "googleapis": "39",
     "next": "9.5.3",

@@ -1,30 +1,12 @@
 import { buildDoc, addAction } from "../../common/gsheets";
 import { sendVerificationEmail } from "../../common/verification";
 
-const buildUserFromForm = (form) => {
-  return {
-    name: form.name,
-    crsid: form.crsid,
-    yearOfBirth: form.yearOfBirth,
-    college: form.college,
-    excludeCollege: form.excludeCollege,
-    contact: form.contact,
-
-    isMale: form.male || form.maleNb,
-    isFemale: form.female || form.femaleNb,
-    nb: form.nb,
-
-    interestedInMale: form.interestedInMale,
-    interestedInFemale: form.interestedInFemale,
-  };
-};
-
-const addUnverifiedDatingUser = async (user) => {
+const addUnverifiedFriendingUser = async (user) => {
   const doc = await buildDoc();
 
   await doc.loadInfo();
 
-  const sheetId = doc.sheetsByTitle["Dating"]._rawProperties.sheetId;
+  const sheetId = doc.sheetsByTitle["Friending"]._rawProperties.sheetId;
   const sheet = doc.sheetsById[sheetId];
   const rows = await sheet.getRows();
 
@@ -46,9 +28,8 @@ const addUnverifiedDatingUser = async (user) => {
 };
 
 export default async (req, res) => {
-  const user = buildUserFromForm(req.body);
-  await addAction(req.body.crsid, "Dating sign up");
-  await addUnverifiedDatingUser(user);
+  await addAction(req.body.crsid, "Friending sign up");
+  await addUnverifiedFriendingUser(req.body);
   sendVerificationEmail(req.body.crsid);
 
   res.statusCode = 200;
