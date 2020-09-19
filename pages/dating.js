@@ -27,6 +27,9 @@ export default function Dating() {
   const [successMsg, setSuccessMsg] = useState("");
 
   const onSubmit = (data) => {
+    setSuccessMsg(
+      "We've emailed you to verify your @cam.ac.uk address. Check your junk!"
+    );
     fetch("/api/registerDatingUser", {
       headers: {
         Accept: "application/json",
@@ -39,11 +42,6 @@ export default function Dating() {
       .then(
         (result) => {
           console.log(result);
-          console.log(successMsg);
-          setSuccessMsg(
-            "We've emailed you to verify your @cam.ac.uk address. Check your junk!"
-          );
-          console.log(successMsg);
         },
         (error) => console.log(error)
       );

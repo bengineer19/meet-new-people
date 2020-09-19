@@ -24,7 +24,7 @@ const SuccessPage = ({ verified }) => {
     <Container>
       <Card>
         {verified ? (
-          <VerifMsg>Email was sucessfully verified</VerifMsg>
+          <VerifMsg>Email was sucessfully verified &nbsp;🎉</VerifMsg>
         ) : (
           <VerifMsg>
             Incorrect verification link, please email

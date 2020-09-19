@@ -28,7 +28,6 @@ const addUnverifiedDatingUser = async (user) => {
   const sheet = doc.sheetsById[sheetId];
   const rows = await sheet.getRows();
 
-  let userExists = false;
   for (let i = 0; i < rows.length; i++) {
     if (rows[i].crsid === user.crsid) {
       // Merge new data (if conflicts, new signup takes preference)
@@ -36,20 +35,22 @@ const addUnverifiedDatingUser = async (user) => {
       await rows[i].delete();
       await sheet.addRow(mergedRow);
 
-      userExists = true;
-      break;
+      return;
     }
   }
-  if (!userExists) {
-    sheet.addRow(user);
-  }
+  // If they don't already exist, add 'em
+  await sheet.addRow(user);
 };
 
 export default async (req, res) => {
   const user = buildUserFromForm(req.body);
+  console.log("Adding action...");
   await addAction(req.body.crsid, "Dating sign up");
+  console.log("Adding user...");
   await addUnverifiedDatingUser(user);
+  console.log("Sending email...");
   sendVerificationEmail(req.body.crsid);
+  console.log("Sent email");
 
   res.statusCode = 200;
   res.json({ msg: "All gucciiiii" });

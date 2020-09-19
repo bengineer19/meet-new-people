@@ -27,6 +27,9 @@ export default function Friending() {
   const [successMsg, setSuccessMsg] = useState("");
 
   const onSubmit = (data) => {
+    setSuccessMsg(
+      "We've emailed you to verify your @cam.ac.uk address. Check your junk!"
+    );
     fetch("/api/registerFriendingUser", {
       headers: {
         Accept: "application/json",
@@ -39,11 +42,6 @@ export default function Friending() {
       .then(
         (result) => {
           console.log(result);
-          console.log(successMsg);
-          setSuccessMsg(
-            "We've emailed you to verify your @cam.ac.uk address. Check your junk!"
-          );
-          console.log(successMsg);
         },
         (error) => console.log(error)
       );
