@@ -48,8 +48,10 @@ export const verifyUserEmail = async (crsid, signupType) => {
   await doc.loadInfo();
 
   if (signupType.toLowerCase() === "dating") {
+    console.log("Updating Dating User");
     updateSheet(doc, "Dating", crsid);
   } else {
+    console.log("Updating Friending User");
     updateSheet(doc, "Friending", crsid);
   }
 };
