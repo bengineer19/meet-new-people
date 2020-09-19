@@ -1,11 +1,7 @@
 import { buildDoc, addAction } from "../../common/gsheets";
 import { sendVerificationEmail } from "../../common/verification";
 
-const addUnverifiedFriendingUser = async (user) => {
-  const doc = await buildDoc();
-
-  await doc.loadInfo();
-
+const addUnverifiedFriendingUser = async (doc, user) => {
   const sheetId = doc.sheetsByTitle["Friending"]._rawProperties.sheetId;
   const sheet = doc.sheetsById[sheetId];
   const rows = await sheet.getRows();
@@ -28,10 +24,13 @@ const addUnverifiedFriendingUser = async (user) => {
 };
 
 export default async (req, res) => {
+  const doc = await buildDoc();
+  await doc.loadInfo();
+
   console.log("Adding action...");
-  await addAction(req.body.crsid, "Friending sign up");
+  await addAction(doc, req.body.crsid, "Friending sign up");
   console.log("Adding user...");
-  await addUnverifiedFriendingUser(req.body);
+  await addUnverifiedFriendingUser(doc, req.body);
   console.log("Sending email...");
   sendVerificationEmail(req.body.crsid, "Friending");
   console.log("Sent email");

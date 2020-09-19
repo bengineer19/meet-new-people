@@ -13,11 +13,7 @@ export const buildDoc = async () => {
   return doc;
 };
 
-export const addAction = async (crsid, action) => {
-  const doc = await buildDoc();
-
-  await doc.loadInfo();
-
+export const addAction = async (doc, crsid, action) => {
   const sheetId = doc.sheetsByTitle["Actions"]._rawProperties.sheetId;
   const sheet = doc.sheetsById[sheetId];
 

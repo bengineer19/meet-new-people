@@ -19,11 +19,7 @@ const buildUserFromForm = (form) => {
   };
 };
 
-const addUnverifiedDatingUser = async (user) => {
-  const doc = await buildDoc();
-
-  await doc.loadInfo();
-
+const addUnverifiedDatingUser = async (doc, user) => {
   const sheetId = doc.sheetsByTitle["Dating"]._rawProperties.sheetId;
   const sheet = doc.sheetsById[sheetId];
   const rows = await sheet.getRows();
@@ -43,11 +39,14 @@ const addUnverifiedDatingUser = async (user) => {
 };
 
 export default async (req, res) => {
+  const doc = await buildDoc();
+  await doc.loadInfo();
+
   const user = buildUserFromForm(req.body);
   console.log("Adding action...");
-  await addAction(req.body.crsid, "Dating sign up");
+  await addAction(doc, req.body.crsid, "Dating sign up");
   console.log("Adding user...");
-  await addUnverifiedDatingUser(user);
+  await addUnverifiedDatingUser(doc, user);
   console.log("Sending email...");
   sendVerificationEmail(req.body.crsid, "Dating");
   console.log("Sent email");
