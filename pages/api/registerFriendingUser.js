@@ -28,9 +28,13 @@ const addUnverifiedFriendingUser = async (user) => {
 };
 
 export default async (req, res) => {
+  console.log("Adding action...");
   await addAction(req.body.crsid, "Friending sign up");
+  console.log("Adding user...");
   await addUnverifiedFriendingUser(req.body);
-  sendVerificationEmail(req.body.crsid);
+  console.log("Sending email...");
+  sendVerificationEmail(req.body.crsid, "Friending");
+  console.log("Sent email");
 
   res.statusCode = 200;
   res.json({ msg: "All gucciiiii" });

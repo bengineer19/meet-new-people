@@ -13,7 +13,7 @@ const VerifMsg = Styled.div`
 export async function getServerSideProps({ query }) {
   const verified = getCRSIDHash(query.crsid) === query.auth;
   if (verified) {
-    await verifyUserEmail(query.crsid);
+    await verifyUserEmail(query.crsid, query.signupType);
   }
 
   return { props: { verified } };
@@ -24,11 +24,11 @@ const SuccessPage = ({ verified }) => {
     <Container>
       <Card>
         {verified ? (
-          <VerifMsg>Email was sucessfully verified &nbsp;🎉</VerifMsg>
+          <VerifMsg>Signup was confirmed &nbsp;🎉</VerifMsg>
         ) : (
           <VerifMsg>
-            Incorrect verification link, please email
-            meetnewpeopleatcam@gmail.com
+            Oops, something went wrong, please email
+            meetnewpeopleatcam@gmail.com if the problem persists.
           </VerifMsg>
         )}
       </Card>

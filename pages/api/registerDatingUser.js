@@ -49,7 +49,7 @@ export default async (req, res) => {
   console.log("Adding user...");
   await addUnverifiedDatingUser(user);
   console.log("Sending email...");
-  sendVerificationEmail(req.body.crsid);
+  sendVerificationEmail(req.body.crsid, "Dating");
   console.log("Sent email");
 
   res.statusCode = 200;

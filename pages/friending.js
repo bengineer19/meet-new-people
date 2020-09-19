@@ -107,8 +107,8 @@ export default function Friending() {
 
           <Spacer />
           <SmolText>
-            By signing up you agree that you this data has to be stored, and
-            that's cool
+            By signing up you agree that your data has to be stored, and that's
+            cool
           </SmolText>
         </form>
         <Spacer />

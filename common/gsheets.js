@@ -43,10 +43,13 @@ const updateSheet = async (doc, sheetTitle, crsid) => {
   }
 };
 
-export const verifyUserEmail = async (crsid) => {
+export const verifyUserEmail = async (crsid, signupType) => {
   const doc = await buildDoc();
   await doc.loadInfo();
 
-  updateSheet(doc, "Dating", crsid);
-  updateSheet(doc, "Friending", crsid);
+  if (signupType.toLowerCase() === "dating") {
+    updateSheet(doc, "Dating", crsid);
+  } else {
+    updateSheet(doc, "Friending", crsid);
+  }
 };
