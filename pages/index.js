@@ -20,9 +20,7 @@ export default function Home() {
       </Head>
       <Container>
         <Hero>It's hard to meet new people at Cambridge during Covid.</Hero>
-        <H2>
-          We'll automatically match you with someone random about once a week.
-        </H2>
+        <H2>We'll email you with a random match about once a week.</H2>
 
         <br />
 
@@ -31,30 +29,37 @@ export default function Home() {
 
           <H1>Friending</H1>
           <Subtitle>Grow your friendship circles</Subtitle>
-          <Link href="/friending">
+          <a
+            target="_blank"
+            href="https://docs.google.com/forms/d/14Yh-DZvoJ5dzi1Dj66-cJzY7YQpx9eyz8OwDilYYpTY"
+          >
             <Button>
               Friending Sign Up <FaArrowRight />
             </Button>
-          </Link>
+          </a>
 
           <H1>Dating</H1>
           <Subtitle>
             Once we've put you in touch you can meet up how you want, we suggest
             grabbing a coffee
           </Subtitle>
-          <Link href="/dating">
+          <a
+            target="_blank"
+            href="https://docs.google.com/forms/d/1Jb-T_Nvq6iNfuhLe4QU96ECnUfJeWb1q-om-fr3EOjg"
+          >
             <Button>
               Dating Sign Up <FaArrowRight />
             </Button>
-          </Link>
+          </a>
 
           <H1>Networking</H1>
           <Subtitle>
             Meet people to chat about careers, startups & business
           </Subtitle>
-          {/* <Link href="/networking"> */}
+          {/* <a href="/networking"> */}
           <Button>Coming Soon!</Button>
-          {/* </Link> */}
+          {/* </a> */}
+          <Spacer />
         </Card>
 
         <Spacer />
@@ -64,8 +69,8 @@ export default function Home() {
 
           <H2>Who can sign up?</H2>
           <Subtitle>
-            This is purely for Cambridge University students. Your @cam.ac.uk
-            email will be verified when you sign up.
+            This is purely for Cambridge University students. You must have a
+            @cam.ac.uk email to sign up.
           </Subtitle>
           <br />
 
@@ -74,7 +79,7 @@ export default function Home() {
           <br />
 
           <H2>Is it easy to unsubscribe if I want to?</H2>
-          <Subtitle>Just click the link at the bottom of an email.</Subtitle>
+          <Subtitle>Just click the link at the bottom of any email.</Subtitle>
           <br />
 
           <H2>Anything else</H2>
@@ -82,6 +87,8 @@ export default function Home() {
             Email meetnewpeopleatcam [at] gmail [dot] com with any questions,
             problems, or feedback.
           </Subtitle>
+
+          <Spacer />
         </Card>
       </Container>
     </>
