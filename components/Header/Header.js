@@ -36,10 +36,16 @@ export default function Header() {
       </a>
       {(!isSmallScreen || isNavVisible) && (
         <Nav>
-          <a href="https://docs.google.com/forms/d/1Jb-T_Nvq6iNfuhLe4QU96ECnUfJeWb1q-om-fr3EOjg">
+          <a
+            target="_blank"
+            href="https://docs.google.com/forms/d/1Jb-T_Nvq6iNfuhLe4QU96ECnUfJeWb1q-om-fr3EOjg"
+          >
             Dating
           </a>
-          <a href="https://docs.google.com/forms/d/14Yh-DZvoJ5dzi1Dj66-cJzY7YQpx9eyz8OwDilYYpTY">
+          <a
+            target="_blank"
+            href="https://docs.google.com/forms/d/14Yh-DZvoJ5dzi1Dj66-cJzY7YQpx9eyz8OwDilYYpTY"
+          >
             Friending
           </a>
           {/* <a href="/">Networking</a> */}
